@@ -4,32 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #board {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
-            gap: 2px;
-            border: 2px solid black;
-        }
-
-        .cell {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2em;
-            background-color: powderblue;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="board">
@@ -44,62 +19,6 @@
         <div class="cell" onclick="makeMove(8)"></div>
     </div>
 
-    <script>
-        const board = document.getElementById('board');
-        let currentPlayer = 'X';
-        let cells = ['', '', '', '', '', '', '', '', ''];
-        let gameOver = false;
-
-        function makeMove(index) {
-            if (cells[index] === '' && !gameOver) {
-                cells[index] = currentPlayer;
-                render();
-                checkWinner();
-                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            }
-        }
-
-        function render() {
-            cells.forEach((value, index) => {
-                const cell = board.children[index];
-                cell.innerText = value;
-            });
-        }
-
-        function checkWinner() {
-            const winningConditions = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-                [0, 4, 8], [2, 4, 6] // Diagonals
-            ];
-
-            for (let condition of winningConditions) {
-                const [a, b, c] = condition;
-                if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
-                    gameOver = true;
-                    setTimeout(() => {
-                        alert(`${cells[a]} wins!`);
-                        resetGame();
-                    }, 100);
-                    return;
-                }
-            }
-
-            if (!cells.includes('')) {
-                gameOver = true;
-                setTimeout(() => {
-                    alert("It's a draw!");
-                    resetGame();
-                }, 100);
-            }
-        }
-
-        function resetGame() {
-            cells = ['', '', '', '', '', '', '', '', ''];
-            currentPlayer = 'X';
-            gameOver = false;
-            render();
-        }
-    </script>
+    <script src="ttt.js"></script>
 </body>
 </html>
