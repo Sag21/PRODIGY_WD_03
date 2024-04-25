@@ -4,6 +4,12 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 20px;
+    background-color: rgb(186, 215, 241);
 }
 
 #board {
